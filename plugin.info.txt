@@ -1,0 +1,7 @@
+base   mdlink
+author Benoit
+email  benoit.thibaudeau64@gmail.com
+date   2026-11-17
+name   Mdlink (liens [texte](Note.md) à la Obsidian)
+desc   Un lien Markdown [texte](Note.md) mène à la page correspondant au fichier Note.md, comme dans Obsidian. Le texte affiché reste celui du lien.
+url    https://www.dokuwiki.org/plugins

@@ -1,0 +1,11 @@
+/* Mdlink : contenu de note intégré (![[Note]]) */
+.dokuwiki .mdlink-embed {
+    margin: 1em 0;
+    padding: .2em 1em .6em;
+    border: 1px solid __border__;
+    border-left: 4px solid __link__;
+    border-radius: 0 6px 6px 0;
+    background: __background_alt__;
+}
+.dokuwiki .mdlink-embed-title { font-weight: 700; margin: .5em 0 .2em; }
+.dokuwiki .mdlink-embed h1 { font-size: 1.3em; }
