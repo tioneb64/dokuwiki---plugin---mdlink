@@ -37,6 +37,21 @@ class syntax_plugin_mdlink_wikilink extends SyntaxPlugin
         if ($embed) $match = substr($match, 1);
         $inner = trim(substr($match, 2, -2));
         if ($embed) return $this->embed($inner, (string)$ID);
+        // liens natifs DokuWiki ([[wp>page]], [[https://...]], [[mailto:...]], [[?do=...]], [[doku.php?...]]) :
+        // on laisse le noyau les classer, ce ne sont pas des noms de notes
+        if (preg_match('/^\s*([a-zA-Z0-9.\-_]+>|[a-z][a-z0-9+.\-]*:\/\/|mailto:|\?|doku\.php)/i', $inner)) {
+            $parts = array_pad(explode('|', $inner, 2), 2, null);
+            $title = $parts[1] === null ? null : trim($parts[1]);
+            if ($title !== null && preg_match('/^\{\{[^\}]+\}\}$/', $title)) {
+                $title = \dokuwiki\Parsing\ParserMode\Media::parseMedia($title);
+            }
+            $url = trim($parts[0]);
+            if (strpos($url, '?') === 0 || stripos($url, 'doku.php') === 0) {
+                // adresse interne du wiki : lien externe relatif à la base DokuWiki
+                $url = DOKU_URL . ltrim(stripos($url, 'doku.php') === 0 ? $url : 'doku.php' . $url, '/');
+            }
+            return \dokuwiki\Parsing\Helpers\Link::classify($url, $title === '' ? null : $title);
+        }
         [$target, $alias] = array_pad(explode('|', $inner, 2), 2, null);
         [$name, $anchor] = array_pad(explode('#', trim($target), 2), 2, null);
         $name = trim($name);

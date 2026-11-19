@@ -12,6 +12,9 @@ Fait comprendre à DokuWiki les liens tels qu'on les écrit dans **Obsidian**, y
 | `[[Note]]`, `[[Note\|texte]]`, `[[Note#Titre]]`, `[[#Titre]]` | liens vers une note ou une section |
 | `![[image.png]]`, `![[image.png\|300x200]]` | image (largeur, hauteur, texte alternatif) |
 | `![[Note]]`, `![[Note#Titre]]` | contenu d'une note ou d'une section intégré à la page (3 niveaux maximum, droits de lecture respectés) |
+| `{{:espace:image.png?400\|texte}}` | média à la syntaxe DokuWiki (insérée par le gestionnaire de médias), avec taille, alignement, `nolink`, `recache` ; les autres fichiers deviennent des liens |
+
+Les liens natifs de DokuWiki écrits entre `[[ ]]` ne sont pas pris pour des noms de notes : `[[https://exemple.org|texte]]`, `[[mailto:nom@exemple.org]]`, `[[wp>Page]]` (interwiki), `[[?do=fmtags]]` et `[[doku.php?id=page]]` sont laissés au noyau de DokuWiki ; le texte peut être une image (`[[https://exemple.org|{{image.png}}]]`).
 
 La page est retrouvée d'après son nom ; si plusieurs pages portent le même nom, celle du dossier le plus proche est choisie.
 
